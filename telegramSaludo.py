@@ -42,7 +42,7 @@ def saludar(chat_id):
     TOKEN = "5937302183:AAHxqvoy9UjAIVIMlDUp6J7ny6y3D8X9brw"
     message = f"🙋🏻‍♂️🙋🏻‍♀️ ¡Saludos!\nEstas son las tarjetas de territorio que se le han asignado:\n\n{hoy_texto}"
     url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id}&text={message}"
-    requests.get(url).json() # this sends the message
+    requests.get(url, timeout=60).json() # this sends the message
 
 if __name__ == "__main__":
     saludar(sys.argv[1:])
