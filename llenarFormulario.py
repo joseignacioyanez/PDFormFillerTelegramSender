@@ -3,6 +3,7 @@
 
 import sys, getopt, datetime, os
 from fillpdf import fillpdfs
+from security import safe_requests
 
 def main(argv):
 
@@ -108,7 +109,7 @@ def main(argv):
     # Aniadir key
     imgUrl += '&key=AIzaSyCOyPMMXtvhi3I5FXi9KzY-EphqVlAfGfk'
 
-    imgData = requests.get(imgUrl).content
+    imgData = safe_requests.get(imgUrl).content
     with open("mapa.jpg", 'wb') as handlerImage:
         handlerImage.write(imgData)
 

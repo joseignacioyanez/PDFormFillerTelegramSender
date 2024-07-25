@@ -1,4 +1,5 @@
-import sys, getopt
+import sys
+from security import safe_requests
 
 # ID del Chat para enviar mensaje antes de Tarjetas
 chat_id = ''
@@ -20,12 +21,10 @@ def despedida(chat_id):
         elif opt in ("-c", "--chat_id="):
             chat_id = arg
     '''
-            
-    import requests
     TOKEN = "5937302183:AAHxqvoy9UjAIVIMlDUp6J7ny6y3D8X9brw"
     message = f"Que Jehová te bendiga por tu sacrificio de alabanza de declarar públicamente su nombre (Hebreos 13:15). 🤟🏼"
     url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id}&text={message}"
-    requests.get(url).json() # this sends the message
+    safe_requests.get(url).json() # this sends the message
 
 if __name__ == "__main__":
     despedida(sys.argv[1:])
