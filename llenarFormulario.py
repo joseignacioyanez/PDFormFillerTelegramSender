@@ -108,7 +108,7 @@ def main(argv):
     # Aniadir key
     imgUrl += '&key=AIzaSyCOyPMMXtvhi3I5FXi9KzY-EphqVlAfGfk'
 
-    imgData = requests.get(imgUrl).content
+    imgData = requests.get(imgUrl, timeout=60).content
     with open("mapa.jpg", 'wb') as handlerImage:
         handlerImage.write(imgData)
 
@@ -171,7 +171,7 @@ def main(argv):
 
     files = {'document': open(f'{archivo_salida}', 'rb')}
 
-    resp = requests.post(f'https://api.telegram.org/bot{token}/sendDocument?chat_id={chat_id}', files=files)
+    resp = requests.post(f'https://api.telegram.org/bot{token}/sendDocument?chat_id={chat_id}', files=files, timeout=60)
 
     if resp.status_code == 200:
         print(resp.status_code , " The document was sent succesfully")
