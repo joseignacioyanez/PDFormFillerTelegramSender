@@ -1,4 +1,5 @@
 import sys, getopt
+from security import safe_requests
 
 # ID del Chat para enviar mensaje antes de Tarjetas
 chat_id = ''
@@ -37,12 +38,10 @@ def saludar(chat_id):
     hoy_texto += meses[int(hoy.strftime("%m")) - 1]
     hoy_texto += " del "
     hoy_texto += hoy.strftime("%Y")
-
-    import requests
     TOKEN = "5937302183:AAHxqvoy9UjAIVIMlDUp6J7ny6y3D8X9brw"
     message = f"🙋🏻‍♂️🙋🏻‍♀️ ¡Saludos!\nEstas son las tarjetas de territorio que se le han asignado:\n\n{hoy_texto}"
     url = f"https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={chat_id}&text={message}"
-    requests.get(url).json() # this sends the message
+    safe_requests.get(url).json() # this sends the message
 
 if __name__ == "__main__":
     saludar(sys.argv[1:])
